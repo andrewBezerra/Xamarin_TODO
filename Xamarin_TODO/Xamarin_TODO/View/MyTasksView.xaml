@@ -72,7 +72,7 @@
                         Grid.Column="2"
                         Margin="0,4.5,0,0"
                         Style="{StaticResource TextSubtitleSecondary}"
-                        Text="   37°C  Araqguaína"
+                        Text="   37°C  Araguaína-TO"
                         VerticalOptions="Start" />
 
                     <!--<Image
