@@ -4,8 +4,11 @@ using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin_TODO.Model;
 
 namespace Xamarin_TODO.ViewModel
@@ -15,11 +18,20 @@ namespace Xamarin_TODO.ViewModel
         string description = string.Empty;
         public string Description
         {
-            get { return description; }
+            get => description;
+            set => SetProperty(ref description, value);
+
+        }
+        int totaltasks = 0;
+        public int TotalTasks
+        {
+            get => totaltasks;
             set
             {
-                SetProperty(ref description, value);
+                SetProperty(ref totaltasks, value);
+               
             }
+
         }
         public TodoViewModel()
         {
@@ -28,9 +40,12 @@ namespace Xamarin_TODO.ViewModel
             TodoTasks.CollectionChanged += (sender, args) =>
               {
                   Title = $"Tasks ({TodoTasks.Count})";
+                  TotalTasks = TodoTasks.Count;
               };
             AddTodoTask = new AsyncCommand(AddTodo);
-           
+
+
+
         }
         public ObservableCollection<TodoTask> TodoTasks { get; set; }
 
@@ -38,9 +53,12 @@ namespace Xamarin_TODO.ViewModel
 
         async Task AddTodo()
         {
-            await Task.Run(() => { 
+            await Task.Run(() =>
+            {
                 TodoTasks.Add(new TodoTask() { Description = Description });
+
             });
+            Description = string.Empty;
         }
 
 
