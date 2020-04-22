@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Xamarin_TODO.View.MyTasksView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:acry="clr-namespace:Sharpnado.Presentation.Forms.RenderedViews;assembly=Sharpnado.Presentation.Forms"
+    xmlns:controls="clr-namespace:Xamarin_TODO.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:images="clr-namespace:Xamarin_TODO.Images;assembly=Xamarin_TODO"
+    xmlns:local="clr-namespace:Xamarin_TODO.ViewModel"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundColor="{StaticResource AcrylicSurface}"
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <local:TodoViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="15">
+                <Grid Margin="{StaticResource MenuMargin}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame
+                        x:Name="ImageFrame"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Padding="4"
+                        CornerRadius="10"
+                        HasShadow="True"
+                        HeightRequest="40"
+                        HorizontalOptions="Start"
+                        IsClippedToBounds="True"
+                        VerticalOptions="Center"
+                        WidthRequest="40">
+
+
+                        <Frame
+                            Padding="0"
+                            CornerRadius="7"
+                            HeightRequest="37"
+                            WidthRequest="37">
+                            <Image Source="{images:ImageResource me.jpg}" />
+                        </Frame>
+                    </Frame>
+
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource TextTitle}"
+                        Text="Boa tarde, Andrew"
+                        VerticalOptions="End" />
+
+                    <Image
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Source="{StaticResource IconSun}"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="0,4.5,0,0"
+                        Style="{StaticResource TextSubtitleSecondary}"
+                        Text="   37°C  Araqguaína"
+                        VerticalOptions="Start" />
+
+                    <!--<Image
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="3"
+                    HorizontalOptions="End"
+                    Source="{StaticResource IconCog}"
+                    VerticalOptions="Center" />-->
+
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Column="0"
+                        HorizontalOptions="Start"
+                        Source="{StaticResource IconPlus}" />
+                    <Label
+                        Grid.Column="1"
+                        HeightRequest="35"
+                        Style="{StaticResource TextHeadline}"
+                        Text="New Task"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+                <acry:MaterialFrame Padding="15,0">
+
+
+                    <controls:NoBorderEntry
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        FontSize="Small"
+                        HeightRequest="60"
+                        Keyboard="Text"
+                        Placeholder="Description"
+                        ReturnCommand="{Binding AddTodoTask}"
+                        Text="{Binding Description}"
+                        Visual="Material" />
+
+
+                </acry:MaterialFrame>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Start"
+                        Source="{StaticResource IconList}" />
+                    <Label
+                        Grid.Column="1"
+                        HeightRequest="35"
+                        Style="{StaticResource TextHeadline}"
+                        Text="My Tasks"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+                <CollectionView
+                    x:Name="collectionView"
+                    HorizontalScrollBarVisibility="Never"
+                    ItemsSource="{Binding TodoTasks}"
+                    VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <BoxView HeightRequest="10" />
+
+
+                                <acry:MaterialFrame>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox IsChecked="{Binding Done}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            Text="{Binding Description}"
+                                            VerticalTextAlignment="Center" />
+                                    </Grid>
+                                </acry:MaterialFrame>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
