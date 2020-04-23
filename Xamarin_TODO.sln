@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin_TODO.Android", "Xamarin_TODO\Xamarin_TODO.Android\Xamarin_TODO.Android.csproj", "{BD883720-EB8B-4140-BD29-E9E12168162B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin_TODO", "Xamarin_TODO\Xamarin_TODO\Xamarin_TODO.csproj", "{C2DEDDD4-A428-4F45-9A09-03C457B706F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xamarin_TODO", "Xamarin_TODO\Xamarin_TODO\Xamarin_TODO.csproj", "{C2DEDDD4-A428-4F45-9A09-03C457B706F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
