@@ -16,182 +16,193 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
 
-        <StackLayout Margin="15">
-            <AbsoluteLayout>
-                <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-                    <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-                        <Grid Margin="{StaticResource MenuMargin}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="25" />
-                                <RowDefinition Height="25" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60" />
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="30" />
-                            </Grid.ColumnDefinitions>
+
+        <AbsoluteLayout Margin="15,0,15,0">
+
+            <ScrollView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                VerticalScrollBarVisibility="Never">
+
+                <StackLayout
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    CompressedLayout.IsHeadless="True">
+                    <Grid Margin="{StaticResource MenuMargin}" CompressedLayout.IsHeadless="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame
+                            x:Name="ImageFrame"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            Padding="4"
+                            CornerRadius="10"
+                            HasShadow="True"
+                            HeightRequest="40"
+                            HorizontalOptions="Start"
+                            IsClippedToBounds="True"
+                            VerticalOptions="Center"
+                            WidthRequest="40">
+
 
                             <Frame
-                                x:Name="ImageFrame"
-                                Grid.RowSpan="2"
-                                Grid.Column="0"
-                                Padding="4"
-                                CornerRadius="10"
-                                HasShadow="True"
-                                HeightRequest="40"
-                                HorizontalOptions="Start"
-                                IsClippedToBounds="True"
-                                VerticalOptions="Center"
-                                WidthRequest="40">
-
-
-                                <Frame
-                                    Padding="0"
-                                    CornerRadius="7"
-                                    HeightRequest="37"
-                                    WidthRequest="37">
-                                    <Image Source="{images:ImageResource me.jpg}" />
-                                </Frame>
+                                Padding="0"
+                                CornerRadius="7"
+                                HeightRequest="37"
+                                WidthRequest="37">
+                                <Image Source="{images:ImageResource me.jpg}" />
                             </Frame>
+                        </Frame>
 
 
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Grid.ColumnSpan="2"
-                                Style="{StaticResource TextTitle}"
-                                Text="Boa tarde, Andrew"
-                                VerticalOptions="End" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Style="{StaticResource TextTitle}"
+                            Text="Boa tarde, Andrew"
+                            VerticalOptions="End" />
 
-                            <Image
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Source="{StaticResource IconSun}"
-                                VerticalOptions="Center" />
+                        <Image
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Source="{StaticResource IconSun}"
+                            VerticalOptions="Center" />
 
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="2"
-                                Margin="0,4.5,0,0"
-                                Style="{StaticResource TextSubtitleSecondary}"
-                                Text="   37°C  Araguaína-TO"
-                                VerticalOptions="Start" />
-
-
-
-                        </Grid>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image
-                                Grid.Column="0"
-                                HorizontalOptions="Start"
-                                Source="{StaticResource IconPlus}" />
-                            <Label
-                                Grid.Column="1"
-                                HeightRequest="35"
-                                Style="{StaticResource TextHeadline}"
-                                Text="New Task"
-                                VerticalTextAlignment="Center" />
-                        </Grid>
-                        <acry:MaterialFrame Padding="15,0">
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Margin="0,4.5,0,0"
+                            Style="{StaticResource TextSubtitleSecondary}"
+                            Text="   37°C  Araguaína-TO"
+                            VerticalOptions="Start" />
 
 
-                            <controls:NoBorderEntry
-                                Grid.Column="1"
-                                BackgroundColor="Transparent"
-                                FontSize="Small"
-                                HeightRequest="60"
-                                Keyboard="Text"
-                                Placeholder="Description"
-                                ReturnCommand="{Binding AddTodoTask}"
-                                Text="{Binding Description}"
-                                Visual="Material" />
+
+                    </Grid>
+                    <Grid CompressedLayout.IsHeadless="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            HorizontalOptions="Start"
+                            Source="{StaticResource IconPlus}" />
+                        <Label
+                            Grid.Column="1"
+                            HeightRequest="35"
+                            Style="{StaticResource TextHeadline}"
+                            Text="New Task"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                    <acry:MaterialFrame Padding="15,0">
 
 
-                        </acry:MaterialFrame>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image
-                                Grid.Column="0"
-                                BackgroundColor="Transparent"
-                                HorizontalOptions="Start"
-                                Source="{StaticResource IconList}" />
-                            <Label
-                                Grid.Column="1"
-                                HeightRequest="35"
-                                Style="{StaticResource TextHeadline}"
-                                Text="My Tasks"
-                                VerticalTextAlignment="Center" />
-                        </Grid>
-                        <CollectionView x:Name="collectionView" ItemsSource="{Binding TodoTasks}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
+                        <controls:NoBorderEntry
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            FontSize="Small"
+                            HeightRequest="60"
+                            Keyboard="Text"
+                            Placeholder="Description"
+                            ReturnCommand="{Binding AddTodoTask, Mode=TwoWay}"
+                            Text="{Binding Description}"
+                            Visual="Material" />
 
-
-                                    <StackLayout>
-                                        <BoxView HeightRequest="10" />
-
-
-                                        <acry:MaterialFrame>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="40" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <CheckBox IsChecked="{Binding Done}" />
-                                                <Label
-                                                    Grid.Column="1"
-                                                    FontAttributes="Bold"
-                                                    Text="{Binding Description}"
-                                                    VerticalTextAlignment="Center" />
-                                            </Grid>
-                                        </acry:MaterialFrame>
-
-                                    </StackLayout>
-
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-
-                        </CollectionView>
-                    </StackLayout>
-                </ScrollView>
-                <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,100" AbsoluteLayout.LayoutFlags="YProportional,WidthProportional">
-                    <BoxView HeightRequest="10" />
-
-
-                    <acry:MaterialFrame Opacity=".9">
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label
-                                Grid.Column="0"
-                                FontAttributes="Bold"
-                                Text="{Binding TotalTasks, Mode=TwoWay}"
-                                VerticalTextAlignment="Center" />
-                            <Label Grid.Column="1" Text="tarefa(s)" />
-
-                        </Grid>
 
                     </acry:MaterialFrame>
+                    <Grid CompressedLayout.IsHeadless="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Grid.Column="0"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="Start"
+                            Source="{StaticResource IconList}" />
+                        <Label
+                            Grid.Column="1"
+                            HeightRequest="35"
+                            Style="{StaticResource TextHeadline}"
+                            Text="My Tasks"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                    <CollectionView x:Name="collectionView" ItemsSource="{Binding TodoTasks, Mode=OneWay}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
 
+
+                                <StackLayout>
+                                    <BoxView HeightRequest="2" />
+
+
+                                    <acry:MaterialFrame>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox IsChecked="{Binding Done, Mode=OneWay}" />
+                                            <Label
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                Text="{Binding Description, Mode=OneTime}"
+                                                VerticalTextAlignment="Center" />
+                                        </Grid>
+                                    </acry:MaterialFrame>
+
+                                </StackLayout>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
                 </StackLayout>
+            </ScrollView>
 
-            </AbsoluteLayout>
+            <acry:MaterialFrame
+                AbsoluteLayout.LayoutBounds="0,1,1,65"
+                AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
+                Opacity=".9">
 
-        </StackLayout>
+
+                <Label
+                    Grid.Column="0"
+                    Text="{Binding TotalTasks, Mode=TwoWay}"
+                    VerticalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding TotalTasks}" />
+                            <Span Text="tarefa(s)." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+
+
+            </acry:MaterialFrame>
+
+
+
+
+
+        </AbsoluteLayout>
+
+
 
 
     </ContentPage.Content>

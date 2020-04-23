@@ -35,11 +35,11 @@ namespace Xamarin_TODO.ViewModel
         }
         public TodoViewModel()
         {
-            Title = "Tasks";
+          
             TodoTasks = new ObservableCollection<TodoTask>();
             TodoTasks.CollectionChanged += (sender, args) =>
               {
-                  Title = $"Tasks ({TodoTasks.Count})";
+                 
                   TotalTasks = TodoTasks.Count;
               };
             AddTodoTask = new AsyncCommand(AddTodo);
@@ -50,7 +50,7 @@ namespace Xamarin_TODO.ViewModel
         public ObservableCollection<TodoTask> TodoTasks { get; set; }
 
         public IAsyncCommand AddTodoTask { get; private set; }
-
+                                                         
         async Task AddTodo()
         {
             await Task.Run(() =>
