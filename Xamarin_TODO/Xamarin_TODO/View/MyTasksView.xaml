@@ -180,14 +180,12 @@
                 Opacity=".9">
 
 
-                <Label
-                    Grid.Column="0"
-                    Text="{Binding TotalTasks, Mode=TwoWay}"
-                    VerticalTextAlignment="Center">
+                <Label VerticalTextAlignment="Center">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding TotalTasks}" />
-                            <Span Text="tarefa(s)." />
+                            <Span Text="(" />
+                            <Span FontAttributes="Bold" Text="{Binding TotalTasks, Mode=OneWay}" />
+                            <Span Text=") tarefa(s)." />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
