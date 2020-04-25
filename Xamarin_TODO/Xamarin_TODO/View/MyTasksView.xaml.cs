@@ -16,11 +16,19 @@ namespace Xamarin_TODO.View
         {
             
             InitializeComponent();
+            this.collectionView.ChildAdded += 
+                (sender, e) =>  collectionView_ChildAdded(sender, e);
 
             
         }
 
+        private void collectionView_ChildAdded(object sender, ElementEventArgs e)
+        {
+            var child = e.Element;
+            DisplayAlert("CollectionView", "ChildAdded", "Ok");
+            
+        }
 
-      
+        
     }
 }

@@ -42,6 +42,7 @@ namespace Xamarin_TODO.ViewModel
                  
                   TotalTasks = TodoTasks.Count;
               };
+            
             AddTodoTask = new AsyncCommand(AddTodo);
 
 
@@ -53,11 +54,7 @@ namespace Xamarin_TODO.ViewModel
                                                          
         async Task AddTodo()
         {
-            await Task.Run(() =>
-            {
-                TodoTasks.Add(new TodoTask() { Description = Description });
-
-            });
+            TodoTasks.Add(new TodoTask() { Description = Description });            
             Description = string.Empty;
         }
 

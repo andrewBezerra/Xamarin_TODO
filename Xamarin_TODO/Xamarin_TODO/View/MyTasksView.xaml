@@ -11,11 +11,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     BackgroundColor="{StaticResource AcrylicSurface}"
     mc:Ignorable="d">
+
     <ContentPage.BindingContext>
         <local:TodoViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-
 
         <AbsoluteLayout Margin="15,0,15,0">
 
@@ -28,6 +28,7 @@
                     AbsoluteLayout.LayoutBounds="0,0,1,1"
                     AbsoluteLayout.LayoutFlags="All"
                     CompressedLayout.IsHeadless="True">
+
                     <Grid Margin="{StaticResource MenuMargin}" CompressedLayout.IsHeadless="True">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25" />
@@ -39,7 +40,6 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="30" />
                         </Grid.ColumnDefinitions>
-
                         <Frame
                             x:Name="ImageFrame"
                             Grid.RowSpan="2"
@@ -52,8 +52,6 @@
                             IsClippedToBounds="True"
                             VerticalOptions="Center"
                             WidthRequest="40">
-
-
                             <Frame
                                 Padding="0"
                                 CornerRadius="7"
@@ -62,7 +60,6 @@
                                 <Image Source="{images:ImageResource me.jpg}" />
                             </Frame>
                         </Frame>
-
 
                         <Label
                             Grid.Row="0"
@@ -86,18 +83,19 @@
                             Text="   37°C  Araguaína-TO"
                             VerticalOptions="Start" />
 
-
-
                     </Grid>
+
                     <Grid CompressedLayout.IsHeadless="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="20" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
+
                         <Image
                             Grid.Column="0"
                             HorizontalOptions="Start"
                             Source="{StaticResource IconPlus}" />
+
                         <Label
                             Grid.Column="1"
                             HeightRequest="35"
@@ -106,7 +104,6 @@
                             VerticalTextAlignment="Center" />
                     </Grid>
                     <acry:MaterialFrame Padding="15,0">
-
 
                         <controls:NoBorderEntry
                             Grid.Column="1"
@@ -118,19 +115,19 @@
                             ReturnCommand="{Binding AddTodoTask, Mode=TwoWay}"
                             Text="{Binding Description}"
                             Visual="Material" />
-
-
                     </acry:MaterialFrame>
                     <Grid CompressedLayout.IsHeadless="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="20" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
+
                         <Image
                             Grid.Column="0"
                             BackgroundColor="Transparent"
                             HorizontalOptions="Start"
                             Source="{StaticResource IconList}" />
+
                         <Label
                             Grid.Column="1"
                             HeightRequest="35"
@@ -138,25 +135,30 @@
                             Text="My Tasks"
                             VerticalTextAlignment="Center" />
                     </Grid>
-                    <CollectionView x:Name="collectionView" ItemsSource="{Binding TodoTasks, Mode=OneWay}">
+
+                    <CollectionView
+                        x:Name="collectionView"
+                        ChildAdded="collectionView_ChildAdded"
+                        ItemsSource="{Binding TodoTasks, Mode=OneWay}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
 
-
                                 <StackLayout>
+
                                     <BoxView HeightRequest="2" />
 
+                                    <acry:MaterialFrame Padding="0">
 
-                                    <acry:MaterialFrame>
                                         <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
+
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="40" />
+                                                <ColumnDefinition Width="30" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-                                            <CheckBox IsChecked="{Binding Done, Mode=OneWay}" />
+                                            <CheckBox
+                                                Margin="0"
+                                                InputTransparent="True"
+                                                IsChecked="{Binding Done, Mode=OneWay}" />
                                             <Label
                                                 Grid.Column="1"
                                                 FontAttributes="Bold"
@@ -164,13 +166,12 @@
                                                 VerticalTextAlignment="Center" />
                                         </Grid>
                                     </acry:MaterialFrame>
-
                                 </StackLayout>
-
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-
                     </CollectionView>
+
+                    <BoxView HeightRequest="70" />
                 </StackLayout>
             </ScrollView>
 
@@ -179,8 +180,8 @@
                 AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
                 Opacity=".9">
 
-
                 <Label VerticalTextAlignment="Center">
+
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="(" />
@@ -189,19 +190,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-
-
-
             </acry:MaterialFrame>
-
-
-
-
-
         </AbsoluteLayout>
-
-
-
-
     </ContentPage.Content>
 </ContentPage>
