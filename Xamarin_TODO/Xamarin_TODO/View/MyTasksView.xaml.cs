@@ -29,6 +29,10 @@ namespace Xamarin_TODO.View
             
         }
 
-        
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+           
+            DisplayAlert("CollectionView", "Item Tapped", "Ok");
+        }
     }
 }
