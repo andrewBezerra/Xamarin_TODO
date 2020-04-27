@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin_TODO.Model;
 
 namespace Xamarin_TODO.View
 {
@@ -14,25 +15,25 @@ namespace Xamarin_TODO.View
     {
         public MyTasksView()
         {
-            
-            InitializeComponent();
-            this.collectionView.ChildAdded += 
-                (sender, e) =>  collectionView_ChildAdded(sender, e);
 
-            
+            InitializeComponent();
+            this.collectionView.ChildAdded +=
+                (sender, e) => collectionView_ChildAdded(sender, e);
+
+           
+
+
         }
 
         private void collectionView_ChildAdded(object sender, ElementEventArgs e)
         {
             var child = e.Element;
             DisplayAlert("CollectionView", "ChildAdded", "Ok");
-            
+
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-           
-            DisplayAlert("CollectionView", "Item Tapped", "Ok");
-        }
+      
+
+
     }
 }

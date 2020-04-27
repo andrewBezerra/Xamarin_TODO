@@ -7,20 +7,23 @@
     xmlns:controls="clr-namespace:Xamarin_TODO.Controls"
     xmlns:converters="clr-namespace:Xamarin_TODO.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fontAwesome="clr-namespace:FontAwesome;assembly=Xamarin_TODO"
     xmlns:images="clr-namespace:Xamarin_TODO.Images;assembly=Xamarin_TODO"
     xmlns:local="clr-namespace:Xamarin_TODO.ViewModel"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     BackgroundColor="{StaticResource AcrylicSurface}"
     mc:Ignorable="d">
-
-    <ContentPage.BindingContext>
-        <local:TodoViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:StrikethroughConverter x:Key="isStrikethrough" />
+            <converters:ReverseBoolConverter x:Key="ReverseBool" />
+
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:TodoViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
 
         <AbsoluteLayout Margin="15,0,15,0">
@@ -155,9 +158,16 @@
                                                     <StackLayout Orientation="Horizontal">
                                                         <Image
                                                             Margin="5,0"
+                                                            IsVisible="{Binding Done, Converter={StaticResource ReverseBool}}"
                                                             Source="{StaticResource IconCheck}"
                                                             VerticalOptions="Center" />
-                                                   
+                                                        <Image
+                                                            Margin="5,0"
+                                                            IsVisible="{Binding Done}"
+
+                                                            Source="{StaticResource IconRedo}"
+                                                            VerticalOptions="Center" />
+
                                                     </StackLayout>
 
                                                 </acry:MaterialFrame>

@@ -38,7 +38,7 @@
         Glyph="{x:Static fontAwesome:IconFont.Cog}"
         Size="{StaticResource SizeMediumSmallIcon}"
         Color="{StaticResource PrimaryColor}" />
-    
+
 
 
 
@@ -91,6 +91,12 @@
         Size="{StaticResource SizeSmallIcon}"
         Color="{StaticResource PrimaryColor}" />
     <FontImageSource
+        x:Key="IconRedo"
+        FontFamily="{StaticResource FontAwesome}"
+        Glyph="{x:Static fontAwesome:IconFont.Redo}"
+        Size="{StaticResource SizeSmallIcon}"
+        Color="{StaticResource PrimaryColor}" />
+    <FontImageSource
         x:Key="IconTrash"
         FontFamily="{StaticResource FontAwesome}"
         Glyph="{x:Static fontAwesome:IconFont.Trash}"
@@ -102,6 +108,7 @@
         Glyph="{x:Static fontAwesome:IconFont.Eraser}"
         Size="{StaticResource SizeSmallIcon}"
         Color="{StaticResource PrimaryColor}" />
+
 
     <FontImageSource
         x:Key="IconMic"
