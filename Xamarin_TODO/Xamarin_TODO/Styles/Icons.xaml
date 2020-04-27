@@ -38,6 +38,9 @@
         Glyph="{x:Static fontAwesome:IconFont.Cog}"
         Size="{StaticResource SizeMediumSmallIcon}"
         Color="{StaticResource PrimaryColor}" />
+    
+
+
 
     <FontImageSource
         x:Key="IconSun"
@@ -73,7 +76,7 @@
         Glyph="{x:Static fontAwesome:IconFont.Plus}"
         Size="{StaticResource SizeSmallIcon}"
         Color="{StaticResource PrimaryColor}" />
-   
+
     <FontImageSource
         x:Key="IconSquare"
         FontFamily="{StaticResource FontAwesomeRegular}"
@@ -85,6 +88,18 @@
         x:Key="IconCheck"
         FontFamily="{StaticResource FontAwesome}"
         Glyph="{x:Static fontAwesome:IconFont.Check}"
+        Size="{StaticResource SizeSmallIcon}"
+        Color="{StaticResource PrimaryColor}" />
+    <FontImageSource
+        x:Key="IconTrash"
+        FontFamily="{StaticResource FontAwesome}"
+        Glyph="{x:Static fontAwesome:IconFont.Trash}"
+        Size="{StaticResource SizeSmallIcon}"
+        Color="{StaticResource PrimaryColor}" />
+    <FontImageSource
+        x:Key="IconEraser"
+        FontFamily="{StaticResource FontAwesome}"
+        Glyph="{x:Static fontAwesome:IconFont.Eraser}"
         Size="{StaticResource SizeSmallIcon}"
         Color="{StaticResource PrimaryColor}" />
 

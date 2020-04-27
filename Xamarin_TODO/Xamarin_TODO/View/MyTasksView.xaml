@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:acry="clr-namespace:Sharpnado.Presentation.Forms.RenderedViews;assembly=Sharpnado.Presentation.Forms"
     xmlns:controls="clr-namespace:Xamarin_TODO.Controls"
+    xmlns:converters="clr-namespace:Xamarin_TODO.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:images="clr-namespace:Xamarin_TODO.Images;assembly=Xamarin_TODO"
     xmlns:local="clr-namespace:Xamarin_TODO.ViewModel"
@@ -15,6 +16,11 @@
     <ContentPage.BindingContext>
         <local:TodoViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StrikethroughConverter x:Key="isStrikethrough" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
 
         <AbsoluteLayout Margin="15,0,15,0">
@@ -136,29 +142,64 @@
                 <CollectionView
                     x:Name="collectionView"
                     ChildAdded="collectionView_ChildAdded"
-                    ItemSizingStrategy="MeasureFirstItem"
                     ItemsSource="{Binding TodoTasks, Mode=OneWay}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
+                            <SwipeView BackgroundColor="Transparent">
+
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItemView>
+                                            <Grid>
+                                                <acry:MaterialFrame Padding="15,15">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Image
+                                                            Margin="5,0"
+                                                            Source="{StaticResource IconCheck}"
+                                                            VerticalOptions="Center" />
+                                                   
+                                                    </StackLayout>
+
+                                                </acry:MaterialFrame>
+                                            </Grid>
+                                            <SwipeItemView.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DoneTodoTask}" CommandParameter="{Binding}" />
+                                            </SwipeItemView.GestureRecognizers>
+                                        </SwipeItemView>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+
+                                <SwipeView.RightItems>
+                                    <SwipeItemView>
+                                        <Grid>
+                                            <acry:MaterialFrame Padding="15,15">
+                                                <StackLayout Orientation="Horizontal">
 
 
+                                                    <Image
+                                                        Margin="5,0"
+                                                        Source="{StaticResource IconTrash}"
+                                                        VerticalOptions="Center" />
 
-                            <acry:MaterialFrame Padding="0">
+
+                                                </StackLayout>
+                                            </acry:MaterialFrame>
+                                        </Grid>
+                                        <SwipeItemView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.RemoveTodoTask}" CommandParameter="{Binding}" />
+                                        </SwipeItemView.GestureRecognizers>
+                                    </SwipeItemView>
+                                </SwipeView.RightItems>
 
                                 <StackLayout>
-                                    <CheckBox
-                                        Margin="0"
-                                        InputTransparent="True"
-                                        IsChecked="{Binding Done, Mode=OneWay}" />
-                                    <Label
-                                        Grid.Column="1"
-                                        FontAttributes="Bold"
-                                        Text="{Binding Description, Mode=OneTime}"
-                                        VerticalTextAlignment="Center" />
+                                    <acry:MaterialFrame Padding="15,15">
+                                        <Label
+                                            Text="{Binding Description, Mode=OneTime}"
+                                            TextDecorations="{Binding Done, Converter={StaticResource isStrikethrough}}"
+                                            VerticalTextAlignment="Center" />
+                                    </acry:MaterialFrame>
                                 </StackLayout>
-                            </acry:MaterialFrame>
-
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

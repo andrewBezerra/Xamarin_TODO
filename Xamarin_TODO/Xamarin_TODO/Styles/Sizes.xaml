@@ -13,16 +13,18 @@
     <Thickness x:Key="ThicknessMedium">20</Thickness>
     <Thickness x:Key="ThicknessLarge">35</Thickness>
 
-    <Thickness x:Key="MenuMargin"
-               Bottom="10"
-               Left="5"
-               Right="5"
-               Top="5" />
+    <Thickness
+        x:Key="MenuMargin"
+        Bottom="10"
+        Left="5"
+        Right="5"
+        Top="5" />
 
-    <Thickness x:Key="HeaderMargin"
-               Bottom="5"
-               Left="5"
-               Right="5"
-               Top="0" />
+    <Thickness
+        x:Key="HeaderMargin"
+        Bottom="5"
+        Left="5"
+        Right="5"
+        Top="0" />
 
 </ResourceDictionary>
