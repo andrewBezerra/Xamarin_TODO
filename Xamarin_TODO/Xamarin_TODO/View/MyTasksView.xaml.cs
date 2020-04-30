@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,10 @@ namespace Xamarin_TODO.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyTasksView : ContentPage
     {
-        private bool animating = false;
+        private bool isAnimating = false;
+        private bool isScrooling = false;
         private double lastY = 0;
+        private double movement = 0;
         public MyTasksView()
         {
 
@@ -38,69 +41,110 @@ namespace Xamarin_TODO.View
         {
 
 
+
         }
 
         private async Task AnimateHeader(double delta)
         {
-            if (lastY > delta)
+           
+
+
+            Debug.WriteLine($"---  Y: {delta}   Last Y:{lastY}   Movement:{movement}");
+            Debug.WriteLine($"---  Image X: {ImageFrame.TranslationX}   Greet X:{ Greetings.TranslationX}  Greet Y:{Greetings.TranslationY}");
+            Debug.WriteLine($"--- Headerline Y:{headerline.TranslationY }");
+
+            if (delta < 69)
             {
-
-                animating = true;
-
-                // await ImageFrame.TranslateTo(0, -400, 300, Easing.Linear);
-                await Task.WhenAll(
-                    Header.TranslateTo(0, -400, 300, Easing.Linear),
-                    Content.ScaleYTo(-75,300,Easing.Linear)
-                   
-                );
-                animating = false;
-                lastY = delta;
-
+                Header.HeightRequest = delta;
+                ImageFrame.TranslationX = delta * 2;
             }
-            else
+            else  if(ImageFrame.TranslationX<=137)
             {
-
-                animating = true;
-                // await ImageFrame.TranslateTo(0, -400, 300, Easing.Linear);
-                await Task.WhenAll(
-                    Header.TranslateTo(0, 0, 300, Easing.Linear),
-                    Content.TranslateTo(0, 0, 300, Easing.Linear)
-                );
-                animating = false;
-                lastY = delta;
+                ImageFrame.TranslationX = 137.33;
             }
-        }
 
-        private async void SwipeGestureRecognizer_SwipedDown(object sender, SwipedEventArgs e)
-        {
-            Header.IsVisible = true;
-            animating = true;
-            await ImageFrame.TranslateTo(0, 0, 300, Easing.Linear);
-            animating = false;
-        }
-        private async void SwipeGestureRecognizer_SwipedUp(object sender, SwipedEventArgs e)
-        {
+            if (delta < 68)
+            {
+                Greetings.TranslationX = delta * (-1);
+                Greetings.TranslationY = (delta / 1.8) * -1;
+            }
+            else if (Greetings.TranslationX < 65)
+            {
+                Greetings.TranslationX = -68;
+                Greetings.TranslationY = -35;
+            }
 
-            animating = true;
-            await ImageFrame.TranslateTo(0, -400, 300, Easing.Linear);
-            Header.IsVisible = false;
-            animating = false;
-        }
+            if (delta < 20)
+            {
+                headerline.TranslationY = delta * (-1);
+                headerline.Opacity = delta / 20;
+            }
+            else if (headerline.TranslationY > -19)
+            {
+                headerline.TranslationY = -20;
+                headerline.Opacity = 1;
+            }
+
+
+
+
+
+
+            //boxHeader.HeightRequest -= delta;
+
+                //if (delta == 0)
+                //{
+                //    //collectionView.HeightRequest = ((List<ItemsView>)collectionView.ItemsSource).Count*50;
+                //    return;
+                //}
+
+
+                //if (headerTranslated > 80 && delta>=0)
+                //    return;
+
+                //if (headerTranslated <= 80)
+                //    headerTranslated += delta;
+
+                //isScrooling = isAnimating = true;
+                //if (delta >= 1)
+                //{
+
+
+                //    Debug.WriteLine($"Animate UP");
+                //    // await ImageFrame.TranslateTo(0, -400, 300, Easing.Linear);
+                //    _ = await Task.WhenAll(
+                //        Header.TranslateTo(0, -delta, 500, Easing.Linear)
+
+                //    );
+                //    Header.IsVisible = false;
+
+
+
+                //}
+                //else if (delta <= -1)
+                //{
+                //    Debug.WriteLine($"Animate Down");
+
+                //    // await ImageFrame.TranslateTo(0, -400, 300, Easing.Linear);
+                //    _ = await Task.WhenAll(
+                //        Header.TranslateTo(0, delta, 500, Easing.Linear)
+
+                //    );
+                //    Header.IsVisible = true;
+
+
+                //}
+                //isScrooling = isAnimating = false;
+            }
 
         private async void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
         {
-            if (sender is ScrollView scrollview)
-            {
-
-                if (!animating)
-                {
-
-                    await AnimateHeader(e.ScrollY);
-
-                }
 
 
-            }
+            await AnimateHeader(e.ScrollY);
+
+
+
         }
     }
 }
