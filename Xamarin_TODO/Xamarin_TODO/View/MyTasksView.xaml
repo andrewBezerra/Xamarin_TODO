@@ -17,7 +17,6 @@
         <ResourceDictionary>
             <converters:StrikethroughConverter x:Key="isStrikethrough" />
             <converters:ReverseBoolConverter x:Key="ReverseBool" />
-
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.BindingContext>
@@ -26,214 +25,175 @@
 
     <ContentPage.Content>
 
-        <AbsoluteLayout Margin="15,0,15,0">
+        <StackLayout Margin="15,0" CompressedLayout.IsHeadless="True">
 
 
+            <Grid x:Name="Header" Margin="{StaticResource MenuMargin}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="25" />
 
-            <StackLayout
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="All"
-                CompressedLayout.IsHeadless="True">
+                </Grid.RowDefinitions>
 
-                <Grid Margin="{StaticResource MenuMargin}" CompressedLayout.IsHeadless="True">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="25" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="30" />
-                    </Grid.ColumnDefinitions>
+                <Frame
+                    x:Name="ImageFrame"
+                    Padding="4"
+                    CornerRadius="10"
+                    HasShadow="True"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    VerticalOptions="Center"
+                    WidthRequest="40">
                     <Frame
-                        x:Name="ImageFrame"
-                        Grid.RowSpan="2"
-                        Grid.Column="0"
-                        Padding="4"
-                        CornerRadius="10"
-                        HasShadow="True"
-                        HeightRequest="40"
-                        HorizontalOptions="Start"
-                        IsClippedToBounds="True"
-                        VerticalOptions="Center"
-                        WidthRequest="40">
-                        <Frame
-                            Padding="0"
-                            CornerRadius="7"
-                            HeightRequest="37"
-                            WidthRequest="37">
-                            <Image Source="{images:ImageResource me.jpg}" />
-                        </Frame>
+                        Padding="0"
+                        CornerRadius="7"
+                        HeightRequest="37"
+                        WidthRequest="37">
+                        <Image Source="{images:ImageResource me.jpg}" />
                     </Frame>
+                </Frame>
+
+                <Label
+                    Grid.Row="1"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource TextTitle}"
+                    Text="Good Afternoon, Andrew"
+                    VerticalOptions="End" />
+
+
+
+            </Grid>
+            <Label
+                Style="{StaticResource TextHeadline}"
+                Text="New Task"
+                VerticalTextAlignment="Center" />
+
+            <acry:MaterialFrame Padding="15,0">
+
+                <controls:NoBorderEntry
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    FontSize="Small"
+                    HeightRequest="60"
+                    Keyboard="Text"
+                    Placeholder="Description"
+                    ReturnCommand="{Binding AddTodoTask, Mode=TwoWay}"
+                    Text="{Binding Description}"
+                    Visual="Material" />
+            </acry:MaterialFrame>
+
+
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    Style="{StaticResource TextHeadline}"
+                    Text="My Tasks"
+                    VerticalTextAlignment="Center" />
+                <acry:MaterialFrame
+                    Padding="10,5"
+                    CornerRadius="30"
+                    HorizontalOptions="EndAndExpand">
 
                     <Label
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        Style="{StaticResource TextTitle}"
-                        Text="Boa tarde, Andrew"
-                        VerticalOptions="End" />
-
-                    <Image
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Source="{StaticResource IconSun}"
+                        HorizontalOptions="Center"
+                        Text="{Binding TotalTasks, Mode=OneWay}"
                         VerticalOptions="Center" />
 
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Margin="0,4.5,0,0"
-                        Style="{StaticResource TextSubtitleSecondary}"
-                        Text="   37°C  Araguaína-TO"
-                        VerticalOptions="Start" />
-
-                </Grid>
-
-                <Grid CompressedLayout.IsHeadless="True">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <Image
-                        Grid.Column="0"
-                        HorizontalOptions="Start"
-                        Source="{StaticResource IconPlus}" />
-
-                    <Label
-                        Grid.Column="1"
-                        HeightRequest="35"
-                        Style="{StaticResource TextHeadline}"
-                        Text="New Task"
-                        VerticalTextAlignment="Center" />
-                </Grid>
-                <acry:MaterialFrame Padding="15,0">
-
-                    <controls:NoBorderEntry
-                        Grid.Column="1"
-                        BackgroundColor="Transparent"
-                        FontSize="Small"
-                        HeightRequest="60"
-                        Keyboard="Text"
-                        Placeholder="Description"
-                        ReturnCommand="{Binding AddTodoTask, Mode=TwoWay}"
-                        Text="{Binding Description}"
-                        Visual="Material" />
                 </acry:MaterialFrame>
-                <Grid CompressedLayout.IsHeadless="True">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+            </StackLayout>
+            <CollectionView
+                x:Name="collectionView"
+                ChildAdded="collectionView_ChildAdded"
+                ItemsSource="{Binding TodoTasks, Mode=OneWay}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView BackgroundColor="Transparent">
 
-                    <Image
-                        Grid.Column="0"
-                        BackgroundColor="Transparent"
-                        HorizontalOptions="Start"
-                        Source="{StaticResource IconList}" />
-
-                    <Label
-                        Grid.Column="1"
-                        HeightRequest="35"
-                        Style="{StaticResource TextHeadline}"
-                        Text="My Tasks"
-                        VerticalTextAlignment="Center" />
-                </Grid>
-
-                <CollectionView
-                    x:Name="collectionView"
-                    ChildAdded="collectionView_ChildAdded"
-                    ItemsSource="{Binding TodoTasks, Mode=OneWay}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <SwipeView BackgroundColor="Transparent">
-
-                                <SwipeView.LeftItems>
-                                    <SwipeItems>
-                                        <SwipeItemView>
-                                            <Grid>
-                                                <acry:MaterialFrame Padding="15,15">
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Image
-                                                            Margin="5,0"
-                                                            IsVisible="{Binding Done, Converter={StaticResource ReverseBool}}"
-                                                            Source="{StaticResource IconCheck}"
-                                                            VerticalOptions="Center" />
-                                                        <Image
-                                                            Margin="5,0"
-                                                            IsVisible="{Binding Done}"
-
-                                                            Source="{StaticResource IconRedo}"
-                                                            VerticalOptions="Center" />
-
-                                                    </StackLayout>
-
-                                                </acry:MaterialFrame>
-                                            </Grid>
-                                            <SwipeItemView.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DoneTodoTask}" CommandParameter="{Binding}" />
-                                            </SwipeItemView.GestureRecognizers>
-                                        </SwipeItemView>
-                                    </SwipeItems>
-                                </SwipeView.LeftItems>
-
-                                <SwipeView.RightItems>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
                                     <SwipeItemView>
                                         <Grid>
                                             <acry:MaterialFrame Padding="15,15">
                                                 <StackLayout Orientation="Horizontal">
-
-
                                                     <Image
                                                         Margin="5,0"
-                                                        Source="{StaticResource IconTrash}"
+                                                        IsVisible="{Binding Done, Converter={StaticResource ReverseBool}}"
+                                                        Source="{StaticResource IconCheck}"
+                                                        VerticalOptions="Center" />
+                                                    <Image
+                                                        Margin="5,0"
+                                                        IsVisible="{Binding Done}"
+                                                        Source="{StaticResource IconRedo}"
                                                         VerticalOptions="Center" />
 
-
                                                 </StackLayout>
+
                                             </acry:MaterialFrame>
                                         </Grid>
                                         <SwipeItemView.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.RemoveTodoTask}" CommandParameter="{Binding}" />
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DoneTodoTask}" CommandParameter="{Binding}" />
                                         </SwipeItemView.GestureRecognizers>
                                     </SwipeItemView>
-                                </SwipeView.RightItems>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
 
-                                <StackLayout>
-                                    <acry:MaterialFrame Padding="15,15">
-                                        <Label
-                                            Text="{Binding Description, Mode=OneTime}"
-                                            TextDecorations="{Binding Done, Converter={StaticResource isStrikethrough}}"
-                                            VerticalTextAlignment="Center" />
-                                    </acry:MaterialFrame>
-                                </StackLayout>
-                            </SwipeView>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-                <BoxView HeightRequest="70" />
-            </StackLayout>
+                            <SwipeView.RightItems>
+                                <SwipeItemView>
+                                    <Grid>
+                                        <acry:MaterialFrame Padding="15,15">
 
 
-            <acry:MaterialFrame
-                AbsoluteLayout.LayoutBounds="0,1,1,65"
-                AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
-                Opacity=".9">
 
-                <Label VerticalTextAlignment="Center">
+                                            <Image
+                                                Margin="5,0"
+                                                Source="{StaticResource IconTrash}"
+                                                VerticalOptions="Center" />
 
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="(" />
-                            <Span FontAttributes="Bold" Text="{Binding TotalTasks, Mode=OneWay}" />
-                            <Span Text=") tarefa(s)." />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-            </acry:MaterialFrame>
-        </AbsoluteLayout>
+
+
+                                        </acry:MaterialFrame>
+                                    </Grid>
+                                    <SwipeItemView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.RemoveTodoTask}" CommandParameter="{Binding}" />
+                                    </SwipeItemView.GestureRecognizers>
+                                </SwipeItemView>
+                            </SwipeView.RightItems>
+
+                            <StackLayout>
+                                <acry:MaterialFrame Padding="15,15">
+                                    <Label
+                                        Text="{Binding Description, Mode=OneTime}"
+                                        TextDecorations="{Binding Done, Converter={StaticResource isStrikethrough}}"
+                                        VerticalTextAlignment="Center" />
+                                </acry:MaterialFrame>
+                            </StackLayout>
+
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.GestureRecognizers />
+            </CollectionView>
+
+            <BoxView HeightRequest="70" />
+        </StackLayout>
+
+
+        <!--<acry:MaterialFrame
+                    AbsoluteLayout.LayoutBounds="0,1,1,65"
+                    AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
+                    Opacity=".9">
+
+                    <Label VerticalTextAlignment="Center">
+
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="(" />
+                                <Span FontAttributes="Bold" Text="{Binding TotalTasks, Mode=OneWay}" />
+                                <Span Text=") task(s)." />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </acry:MaterialFrame>-->
+
     </ContentPage.Content>
 </ContentPage>
