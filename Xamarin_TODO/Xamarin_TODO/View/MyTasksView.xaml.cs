@@ -18,6 +18,7 @@ namespace Xamarin_TODO.View
         private bool isScrooling = false;
         private double lastY = 0;
         private double movement = 0;
+        private string user = "Andrew";
         public MyTasksView()
         {
 
@@ -29,6 +30,17 @@ namespace Xamarin_TODO.View
 
 
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            HeaderFrame.HasShadow = false;
+            if (DateTime.Now.Hour > 3 && DateTime.Now.Hour < 12)
+                Greetings.Text = $"Good morning, {user}";
+            else if (DateTime.Now.Hour > 12 && DateTime.Now.Hour < 18)
+                Greetings.Text = $"Good afternoon, {user}";
+            else if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 3)
+                Greetings.Text = $"Good evening, {user}";
+        }
 
         private void collectionView_ChildAdded(object sender, ElementEventArgs e)
         {
@@ -37,25 +49,26 @@ namespace Xamarin_TODO.View
 
         }
 
-        private async void collectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
-        {
-
-
-
-        }
+   
 
         private async Task AnimateHeader(double delta)
         {
-           
 
 
+#if DEBUG
             Debug.WriteLine($"---  Y: {delta}   Last Y:{lastY}   Movement:{movement}");
             Debug.WriteLine($"---  Image X: {ImageFrame.TranslationX}   Greet X:{ Greetings.TranslationX}  Greet Y:{Greetings.TranslationY}");
-            Debug.WriteLine($"--- Headerline Y:{headerline.TranslationY }");
 
+            // Debug.WriteLine($"--- HeaderFrame Heigth:{  HeaderFrame.HeightRequest }");
+#endif
+            HeaderFrame.HasShadow = delta > 40 ? true : false;
             if (delta < 69)
             {
-                Header.HeightRequest = delta;
+                
+               
+                Debug.WriteLine($"--- HeaderFrame Shadow:{   HeaderFrame.HasShadow.ToString() }");
+               // Header.HeightRequest = delta;
+                Debug.WriteLine($"--- HeaderFrame Heigth:{  HeaderFrame.HeightRequest }");
                 ImageFrame.TranslationX = delta * 2;
             }
             else  if(ImageFrame.TranslationX<=137)
@@ -74,68 +87,15 @@ namespace Xamarin_TODO.View
                 Greetings.TranslationY = -35;
             }
 
-            if (delta < 20)
-            {
-                headerline.TranslationY = delta * (-1);
-                headerline.Opacity = delta / 20;
-            }
-            else if (headerline.TranslationY > -19)
-            {
-                headerline.TranslationY = -20;
-                headerline.Opacity = 1;
-            }
+          
+            
+         
 
 
 
 
 
-
-            //boxHeader.HeightRequest -= delta;
-
-                //if (delta == 0)
-                //{
-                //    //collectionView.HeightRequest = ((List<ItemsView>)collectionView.ItemsSource).Count*50;
-                //    return;
-                //}
-
-
-                //if (headerTranslated > 80 && delta>=0)
-                //    return;
-
-                //if (headerTranslated <= 80)
-                //    headerTranslated += delta;
-
-                //isScrooling = isAnimating = true;
-                //if (delta >= 1)
-                //{
-
-
-                //    Debug.WriteLine($"Animate UP");
-                //    // await ImageFrame.TranslateTo(0, -400, 300, Easing.Linear);
-                //    _ = await Task.WhenAll(
-                //        Header.TranslateTo(0, -delta, 500, Easing.Linear)
-
-                //    );
-                //    Header.IsVisible = false;
-
-
-
-                //}
-                //else if (delta <= -1)
-                //{
-                //    Debug.WriteLine($"Animate Down");
-
-                //    // await ImageFrame.TranslateTo(0, -400, 300, Easing.Linear);
-                //    _ = await Task.WhenAll(
-                //        Header.TranslateTo(0, delta, 500, Easing.Linear)
-
-                //    );
-                //    Header.IsVisible = true;
-
-
-                //}
-                //isScrooling = isAnimating = false;
-            }
+        }
 
         private async void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
         {

@@ -78,10 +78,8 @@
 
                         </acry:MaterialFrame>
                     </StackLayout>
-                    <CollectionView
-                        x:Name="collectionView"
-                        ItemsSource="{Binding TodoTasks, Mode=OneWay}"
-                        Scrolled="collectionView_Scrolled">
+
+                    <CollectionView x:Name="collectionView" ItemsSource="{Binding TodoTasks, Mode=OneWay}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <SwipeView BackgroundColor="Transparent">
@@ -150,78 +148,77 @@
                         </CollectionView.ItemTemplate>
                         <CollectionView.GestureRecognizers />
                     </CollectionView>
+
                 </StackLayout>
 
             </ScrollView>
 
             <!--  Header  -->
-            <StackLayout x:Name="Header" Grid.Row="0">
 
-                <Grid
+
+
+
+            <Grid x:Name="Header">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+
+                <Frame
+                    x:Name="HeaderFrame"
+                    Margin="0,0,0,2"
+                    BackgroundColor="{StaticResource AcrylicSurface}"
+                    CornerRadius="0"
+                    HasShadow="True"
+                    HeightRequest="10" />
+                <Frame
+                    x:Name="ImageFrame"
+                    Padding="4"
+                    CornerRadius="10"
+                    HasShadow="True"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    VerticalOptions="Center"
+                    WidthRequest="40">
+                    <Frame
+                        Padding="0"
+                        CornerRadius="7"
+                        HeightRequest="37"
+                        WidthRequest="37">
+                        <Image Source="{images:ImageResource me.jpg}" />
+                    </Frame>
+                </Frame>
+
+                <Label
+                    x:Name="Greetings"
+                    Grid.Row="1"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource TextTitle}"
+                    Text="Good Afternoon, Andrew"
+                    VerticalOptions="End" />
+            </Grid>
+
+            <!--<Grid
+
                     Margin="0"
                     Padding="0"
                     RowSpacing="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="55" />
+                        <RowDefinition Height="3*" />
 
-                        <RowDefinition Height="20" />
+                        <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <BoxView
-                        Grid.RowSpan="1"
-                        BackgroundColor="{StaticResource AcrylicSurface}"
-                        HeightRequest="60" />
 
-                    <Frame
-                        x:Name="ImageFrame"
-                        Padding="4"
-                        CornerRadius="10"
-                        HasShadow="True"
-                        HeightRequest="40"
-                        HorizontalOptions="Center"
-                        IsClippedToBounds="True"
-                        VerticalOptions="Center"
-                        WidthRequest="40">
-                        <Frame
-                            Padding="0"
-                            CornerRadius="7"
-                            HeightRequest="37"
-                            WidthRequest="37">
-                            <Image Source="{images:ImageResource me.jpg}" />
-                        </Frame>
-                    </Frame>
 
-                    <Label
-                        x:Name="Greetings"
-                        Grid.Row="1"
-                        HorizontalOptions="Center"
-                        Style="{StaticResource TextTitle}"
-                        Text="Good Afternoon, Andrew"
-                        VerticalOptions="End" />
 
-                </Grid>
-                <BoxView
-                    x:Name="headerline"
-                    BackgroundColor="Gainsboro"
-                    HeightRequest="0.5"
-                    Opacity="0"
-                    TranslationY="0" />
-            </StackLayout>
-            <!--<acry:MaterialFrame
-                    AbsoluteLayout.LayoutBounds="0,1,1,65"
-                    AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
-                    Opacity=".9">
 
-                    <Label VerticalTextAlignment="Center">
 
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="(" />
-                                <Span FontAttributes="Bold" Text="{Binding TotalTasks, Mode=OneWay}" />
-                                <Span Text=") task(s)." />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </acry:MaterialFrame>-->
+
+                </Grid>-->
+
+
+
         </Grid>
 
     </ContentPage.Content>

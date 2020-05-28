@@ -31,7 +31,7 @@ namespace Xamarin_TODO.Droid.Renderers
         {
             base.OnElementChanged(e);
             if (Control == null || Element == null || e.OldElement != null) return;
-            var element = (NoBorderEntry)Element;
+          
 
             Control.SetBackground(null);
             Control.SetPadding(0, 0, 0, 0);
