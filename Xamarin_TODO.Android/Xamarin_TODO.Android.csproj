@@ -76,6 +76,9 @@
     <PackageReference Include="Microsoft.AppCenter.Crashes">
       <Version>3.2.2</Version>
     </PackageReference>
+    <PackageReference Include="NETStandard.Library">
+      <Version>2.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Sharpnado.MaterialFrame">
       <Version>1.1.1</Version>
     </PackageReference>
