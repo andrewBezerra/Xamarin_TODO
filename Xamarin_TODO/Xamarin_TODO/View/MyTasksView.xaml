@@ -3,7 +3,7 @@
     x:Class="Xamarin_TODO.View.MyTasksView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:acry="clr-namespace:Sharpnado.Presentation.Forms.RenderedViews;assembly=Sharpnado.Presentation.Forms"
+    xmlns:acry="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
     xmlns:controls="clr-namespace:Xamarin_TODO.Controls"
     xmlns:converters="clr-namespace:Xamarin_TODO.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
